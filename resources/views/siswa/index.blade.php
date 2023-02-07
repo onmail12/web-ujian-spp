@@ -48,10 +48,16 @@
                         class="bi bi-trash"></i></a></td> --}}
 
             <td class="text-center">
-                <form action="{{ route('siswa.create') }}" method="post"></form>
-                
-                <button class="btn btn-primary bi bi-pencil-square " href="#">
+                <form action="{{ route('siswa.update', $siswa) }}" method="get">
+
+                    <button type="submit" class="btn btn-primary bi bi-pencil-square" href="#">
+                </form>
             </td>
+            {{-- <td class="text-center">
+                <form action="{{ route('siswa.delete') }}" method="post"></form>
+                <input type="hidden" name="nisn" value={{ $siswa->nisn }}>
+                <button class="btn btn-primary" href="#"><i class="bi bi-pencil-square"></i></button>
+            </td> --}}
             <td class="text-center"><a class="btn btn-danger " href="#"><i class="bi bi-trash"></i></a></td>
         </tr>
     </tbody>

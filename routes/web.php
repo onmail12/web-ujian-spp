@@ -16,7 +16,9 @@ use App\Http\Controllers\TransaksiController;
 |
 */
 
-Route::get('/', [AdminSiswaController::class, 'index'])->middleware('auth');
+Route::get('/', function () {
+    return view('home');
+})->middleware('auth');
 Route::post('/', [LoginController::class, 'logout'])->name('logout');
 
 
@@ -25,6 +27,8 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('authentic
 
 Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
 Route::post('/siswa', [SiswaController::class, 'create'])->name('siswa.create');
+Route::get('/update_siswa/{siswa}', [SiswaController::class, 'update'])->name('siswa.update');
+Route::post('/siswa', [SiswaController::class, 'update'])->name('siswa.update');
 
 Route::get('/pembayaran', [TransaksiController::class, 'index'])->name('pembayaran.index')->middleware(['admin', 'petugas']);
 Route::post('/pembayaran/{siswa}', [TransaksiController::class, 'create'])->name('pembayaran.create')->middleware(['admin', 'petugas']);

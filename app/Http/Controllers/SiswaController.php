@@ -11,4 +11,13 @@ class SiswaController extends Controller
         $siswas = Siswa::all();
         return view('siswa.index', compact('siswas'));
     }
+
+    public function index_update(Siswa $siswa){
+        $siswas = Siswa::all();
+        return view('siswa.index', compact('siswas'));
+    }
+
+    public function update(){
+        // $siswa
+    }
 }
