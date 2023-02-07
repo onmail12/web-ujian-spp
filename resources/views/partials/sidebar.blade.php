@@ -22,9 +22,9 @@
     <hr class="sidebar-divider">
 
     <!-- Heading -->
-    <div class="sidebar-heading">
+    {{-- <div class="sidebar-heading">
         Interface
-    </div>
+    </div> --}}
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
@@ -37,7 +37,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Transaksi</h6>
                 @can('admin_petugas')
-                <a class="collapse-item" href="{{ route('pembayaran') }}">Transaksi Pembayaran</a>
+                <a class="collapse-item" href="{{ route('pembayaran.index') }}">Transaksi Pembayaran</a>
                 @endcan
                 <a class="collapse-item" href="{{ route('histori') }}">Histori Pembayaran</a>
             </div>
@@ -45,26 +45,28 @@
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
+    @can('admin')
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
             aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
-            <span>Utilities</span>
+            <span>Admin</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Utilities:</h6>
-                <a class="collapse-item" href="utilities-color.html">Colors</a>
-                <a class="collapse-item" href="utilities-border.html">Borders</a>
-                <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
+                <h6 class="collapse-header">Admin</h6>
+                <a class="collapse-item" href="{{ route('siswa.index') }}">Data Siswa</a>
+                <a class="collapse-item" href="#">Data Petugas</a>
+                <a class="collapse-item" href="#">Data Kelas</a>
+                <a class="collapse-item" href="#">Data Spp</a>
             </div>
         </div>
     </li>
+    @endcan
 
     <!-- Divider -->
-    <hr class="sidebar-divider">
+    {{-- <hr class="sidebar-divider">
 
     <!-- Heading -->
     <div class="sidebar-heading">
@@ -107,7 +109,7 @@
     </li>
 
     <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
+    <hr class="sidebar-divider d-none d-md-block"> --}}
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

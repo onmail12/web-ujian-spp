@@ -25,7 +25,14 @@ class DatabaseSeeder extends Seeder
         Spp::factory(5)->create();
         Siswa::factory(5)->create();
         Petugas::factory(5)->create();
-
+        
+        User::create([
+            'name' => 'admin',
+            'role' => 'admin',
+            'email' => 'admin@email.com',
+            'password' => bcrypt('1234'),
+        ]);
+        
         foreach (Siswa::all() as $siswa) {
             User::create([
                 'name' => $siswa->nama,
@@ -46,11 +53,5 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        User::create([
-            'name' => 'admin',
-            'role' => 'admin',
-            'email' => 'admin@email.com',
-            'password' => bcrypt('1234'),
-        ]);
     }
 }

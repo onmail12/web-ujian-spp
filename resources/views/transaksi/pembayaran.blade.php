@@ -37,7 +37,7 @@
             <td>{{ $siswa->spp->nominal }}</td>
 
             <td class="text-center">
-                <form action="{{ route('create_pembayaran', $siswa) }}" method="post">
+                <form action="{{ route('pembayaran.create', $siswa) }}" method="post">
                     @csrf
                     <button type="submit" class="btn btn-primary p-2">Bayar</button>
                 </form>
