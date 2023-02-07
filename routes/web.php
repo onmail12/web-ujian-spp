@@ -25,9 +25,9 @@ Route::post('/', [LoginController::class, 'logout'])->name('logout');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
 
-Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
+Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index')->middleware('admin');
 Route::post('/siswa', [SiswaController::class, 'create'])->name('siswa.create');
-Route::get('/update_siswa/{siswa}', [SiswaController::class, 'update'])->name('siswa.update');
+Route::get('/update_siswa/{siswa}', [SiswaController::class, 'index_update'])->name('siswa.index.update');
 Route::post('/siswa', [SiswaController::class, 'update'])->name('siswa.update');
 
 Route::get('/pembayaran', [TransaksiController::class, 'index'])->name('pembayaran.index')->middleware(['admin', 'petugas']);

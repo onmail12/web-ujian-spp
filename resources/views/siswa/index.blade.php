@@ -48,8 +48,7 @@
                         class="bi bi-trash"></i></a></td> --}}
 
             <td class="text-center">
-                <form action="{{ route('siswa.update', $siswa) }}" method="get">
-
+                <form action="{{ route('siswa.index.update', $siswa) }}" method="get">
                     <button type="submit" class="btn btn-primary bi bi-pencil-square" href="#">
                 </form>
             </td>

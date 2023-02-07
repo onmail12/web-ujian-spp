@@ -37,7 +37,8 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'name' => $siswa->nama,
                 'role' => 'siswa',
-                'email' => strtolower(preg_replace('/\W\w+\s*(\W*)$/', '$1', $siswa->nama)) . '@email.com',
+                // 'email' => strtolower(preg_replace('/\W\w+\s*(\W*)$/', '$1', $siswa->nama)) . '@email.com',4
+                'email' => fake()->unique()->safeEmail(),
                 'password' => bcrypt('1234'),
             ]);
         }
@@ -48,7 +49,8 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'name' => $petugas->nama_petugas,
                 'role' => 'petugas',
-                'email' => strtolower(preg_replace('/\W\w+\s*(\W*)$/', '$1', $petugas->nama_petugas)) . '@email.com',
+                // 'email' => strtolower(preg_replace('/\W\w+\s*(\W*)$/', '$1', $petugas->nama_petugas)) . '@email.com',
+                'email' => fake()->unique()->safeEmail(),
                 'password' => bcrypt('1234'),
             ]);
         }
