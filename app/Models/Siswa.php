@@ -24,6 +24,10 @@ class Siswa extends Model
         return $this->belongsTo(Kelas::class, "id_kelas", "id_kelas");
     }
 
+    public function user(){
+        return $this->hasOne(User::class, 'nisn', 'nisn');
+    }
+
     public function scopeBelumlunas($query)
     {
         return $query->where('keterangan', '=', 'belum lunas');

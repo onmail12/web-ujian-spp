@@ -18,9 +18,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('nisn')->index()->nullable();
+            $table->foreignId('id_petugas')->index()->nullable();
             $table->enum('role', ['siswa', 'petugas', 'admin']);
 
-            $table->timestamps();
+            $table->foreign('id_petugas')->references('id_petugas')->on('petugas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('nisn')->references('nisn')->on('siswa')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

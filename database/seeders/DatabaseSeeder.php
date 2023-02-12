@@ -27,33 +27,46 @@ class DatabaseSeeder extends Seeder
         Petugas::factory(5)->create();
         
         User::create([
+            'name' => 'siswa',
+            'role' => 'siswa',
+            'email' => 'siswa@email.com',
+            'password' => bcrypt('1234'),
+        ]);
+        
+        User::create([
+            'name' => 'petugas',
+            'role' => 'petugas',
+            'email' => 'petugas@email.com',
+            'password' => bcrypt('1234'),
+        ]);
+        
+        User::create([
             'name' => 'admin',
             'role' => 'admin',
             'email' => 'admin@email.com',
             'password' => bcrypt('1234'),
         ]);
-        
+
         foreach (Siswa::all() as $siswa) {
             User::create([
                 'name' => $siswa->nama,
-                'role' => 'siswa',
-                // 'email' => strtolower(preg_replace('/\W\w+\s*(\W*)$/', '$1', $siswa->nama)) . '@email.com',4
-                'email' => fake()->unique()->safeEmail(),
+                'email' => strtolower(strtok($siswa->nama, ' ')) . $faker->numerify('##') . '@email.com',
+                // 'email' => fake()->unique()->safeEmail(),
                 'password' => bcrypt('1234'),
+                'nisn' => $siswa->nisn,
+                'role' => 'siswa',
             ]);
         }
-
-
 
         foreach (Petugas::all() as $petugas) {
             User::create([
                 'name' => $petugas->nama_petugas,
-                'role' => 'petugas',
-                // 'email' => strtolower(preg_replace('/\W\w+\s*(\W*)$/', '$1', $petugas->nama_petugas)) . '@email.com',
-                'email' => fake()->unique()->safeEmail(),
+                'email' => strtolower(strtok($petugas->nama_petugas, ' ')) . $faker->numerify('##') . '@email.com',
+                // 'email' => fake()->unique()->safeEmail(),
                 'password' => bcrypt('1234'),
+                'id_petugas' => $petugas->id_petugas,
+                'role' => 'petugas',
             ]);
         }
-
     }
 }

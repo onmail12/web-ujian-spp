@@ -20,6 +20,80 @@
 <a class="btn btn-success my-3" data-bs-toggle="modal" data-bs-target="#addModal">
     <i class="bi bi-person-plus px-2"></i>Tambah Siswa</a>
 
+<div class="modal fade" id="addModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addModalLabel">Tambah Data Siswa</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="px-2" action="{{route('siswa.store')}}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col form-group my-2">
+                            <label for="nisn">NISN</label>
+                            <input type="text" class="form-control" name="nisn" placeholder="Enter NISN" required>
+                        </div>
+                        <div class="col form-group my-2">
+                            <label for="nis">NIS</label>
+                            <input type="text" class="form-control" name="nis" placeholder="Enter NIS" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col form-group my-2">
+                            <label for="nama">Nama</label>
+                            <input type="text" class="form-control" name="nama" placeholder="Enter Nama" required>
+                        </div>
+
+                        <div class="col form-group my-2">
+                            <label for="id_kelas">Kelas</label>
+                            <select class="form-select" name="id_kelas">
+                                <option value="1">Pilih Kelas</option>
+                                @foreach ($kelases as $kelas)
+                                <option value="{{$kelas->id_kelas}}">{{$kelas->nama_kelas}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group my-2">
+                        <label for="alamat">Alamat</label>
+                        <textarea class="form-control" rows="2" name="alamat" placeholder="Enter Alamat"
+                            required></textarea>
+                    </div>
+
+                    <div class="row">
+                        <div class="col form-group my-2">
+                            <label for="no_telp">No.Telp</label>
+                            <input type="text" class="form-control" name="no_telp" placeholder="Enter No. Telpon"
+                                required>
+                        </div>
+
+
+                        <div class="col form-group my-2">
+                            <label for="id_spp">Spp Tahun</label>
+                            <select class="form-select" name="id_spp">
+                                <option value="1">Pilih Spp</option>
+                                @foreach ($spps as $spp)
+                                <option value="{{$spp->id_spp}}">{{$spp->tahun}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success"><i class="bi bi-person-plus px-2"></i>Tambah
+                    Siswa</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <table id="dataTable" class="table table-hover table-bordered text-nowrap mb-5">
     <thead class="table-light text-center">
         <th>No</th>
@@ -30,34 +104,34 @@
         <th>Kelas</th>
         <th style="width:100px; text-align:center;" colspan=2>Aksi</th>
     </thead>
-    @php $i = 0; @endphp
+
     @foreach ($siswas as $siswa)
-    @php $i++; @endphp
     <tbody>
         <tr>
-            <td class="text-center">{{ $i }}</td>
+            <td class="text-center">{{ $loop->iteration }}</td>
             <td class="text-center">{{ $siswa->nisn }}</td>
             <td class="text-center">{{ $siswa->nis }}</td>
             <td>{{ $siswa->nama }}</td>
             {{-- <td>{{ $siswa->alamat }}</td> --}}
             <td class="text-center">{{ $siswa->kelas->nama_kelas }}</td>
 
-            {{-- <td class="text-center"><a class="btn btn-primary p-2"
-                    href="{{ route('edit_siswa', $siswa->nisn) }}"><i class="bi bi-pencil-square"></i></a>
-            <td class="text-center"><a class="btn btn-danger p-2" href="{{ route('delete_siswa', $siswa->nisn) }}"><i
-                        class="bi bi-trash"></i></a></td> --}}
-
             <td class="text-center">
-                <form action="{{ route('siswa.index.update', $siswa) }}" method="get">
-                    <button type="submit" class="btn btn-primary bi bi-pencil-square" href="#">
+                <form action="{{ route('siswa.edit', $siswa) }}" method="get">
+                    <button type="submit" class="btn btn-primary bi bi-pencil-square" data-bs-toggle="modal"
+                        data-bs-target="#updateModal">
                 </form>
             </td>
-            {{-- <td class="text-center">
-                <form action="{{ route('siswa.delete') }}" method="post"></form>
-                <input type="hidden" name="nisn" value={{ $siswa->nisn }}>
-                <button class="btn btn-primary" href="#"><i class="bi bi-pencil-square"></i></button>
-            </td> --}}
-            <td class="text-center"><a class="btn btn-danger " href="#"><i class="bi bi-trash"></i></a></td>
+
+            <td class="text-center">
+                <form action="{{ route('siswa.destroy', $siswa) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger " >
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </form>
+            </td>
+
         </tr>
     </tbody>
 

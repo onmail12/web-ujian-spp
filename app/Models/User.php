@@ -17,11 +17,14 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    public $timestamps = false;
     protected $fillable = [
         'name',
-        'role,',
         'email',
         'password',
+        'nisn',
+        'id_petugas',
+        'role,',
     ];
 
     /**
@@ -31,7 +34,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**
@@ -42,4 +44,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function petugas(){
+        return $this->hasOne(Petugas::class, 'id_petugas', 'id_petugas');
+    }
+
+    public function siswa(){
+        return $this->hasOne(Siswa::class, 'nisn', 'nisn');
+    }
 }

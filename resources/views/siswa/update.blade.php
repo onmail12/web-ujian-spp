@@ -2,8 +2,9 @@
 @section('main')
 <h2 class="display-5">Edit Data Siswa</h2>
 <div class="border rounded-4 bg-secondary" style="--bs-bg-opacity: 0.01;">
-    <form class="m-4" action="{{ route('siswa.update') }}" method="POST">
+    <form class="m-4" action="{{ route('siswa.update', $siswa) }}" method="POST">
         @csrf
+        @method('PUT')
         <input type="hidden" name='nisn' value="{{$siswa->nisn}}">
         <div class="form-group form-floating my-4">
             <input type="text" class="form-control" value="{{$siswa->nisn}}" name="nisn_new" placeholder="Enter NISN"
@@ -23,39 +24,39 @@
 
         <div class="form-group form-floating my-4">
 
-            <select class="form-select" value="{{$siswa->id_kelas}} " name="id_kelas">
-                @foreach ($kelas as $kelas)
+            <select class="form-select" value="{{ $siswa->kelas->id_kelas }}" name="id_kelas">
+                <option value="{{ $siswa->kelas->id_kelas}}" selected>{{$siswa->kelas->nama_kelas}}</option>
+                @foreach ($kelases as $kelas)
                 <option value="{{$kelas->id_kelas}}">{{$kelas->nama_kelas}}</option>
                 @endforeach
-
             </select>
             <label for="id_kelas">Kelas</label>
         </div>
-
+        
         <div class="form-group form-floating my-4">
             <input type="text" class="form-control" value="{{$siswa->alamat}}" name="alamat" placeholder="Enter Alamat" required>
             <label for="alamat">Alamat</label>
         </div>
-
+        
         <div class="form-group form-floating my-4">
-            <input type="text" class="form-control" value="{{$siswa->no_telp}}" name="no_telp required"
-                placeholder="Enter No. Telpon" required>
+            <input type="text" class="form-control" value="{{$siswa->no_telp}}" name="no_telp" required
+            placeholder="Enter No. Telpon" required>
             <label for="no_telp">No. Telpon</label>
-
+            
         </div>
 
         <div class="form-group form-floating my-4">
-            <select class="form-select" value="{{$siswa->id_spp}}" name="id_spp">
-                <option value="1">Pilih Spp</option>
-                @foreach ($spp as $spp)
+            <select class="form-select" name="id_spp">
+                <option value="{{ $siswa->spp->id_spp}}" selected>{{$siswa->spp->tahun}}</option>
+                @foreach ($spps as $spp)
                 <option value="{{$spp->id_spp}}">{{$spp->tahun}}</option>
                 @endforeach
             </select>
             <label for="id_spp">Spp Tahun</label>
-
+            
         </div>
-
-
+        
+        
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

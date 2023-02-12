@@ -10,11 +10,6 @@ class TransaksiController extends Controller
 {
     public function index()
     {
-
-        if (auth()->check() && auth()->user()->role !== 'petugas' && auth()->user()->role !== 'admin') {
-            abort(403);
-        }
-
         $siswas = Siswa::belumlunas()->get();
         return view('transaksi.pembayaran', compact('siswas'));
     }
@@ -28,11 +23,11 @@ class TransaksiController extends Controller
     public function create(Siswa $siswa)
     {
         Pembayaran::create([
-            'id_petugas' => 1,
+            'id_petugas' => auth()->user()->id_petugas,
             'nisn' => $siswa->nisn,
-            'tgl_bayar' => '2023-01-03',
+            'tgl_bayar' => date("Y-m-d", time()),
             'id_spp' => $siswa->spp->id_spp,
-            'jumlah_bayar' => 500000,
+            'jumlah_bayar' => 500000, // no form
             'keterangan' => 'lunas',
         ]);
 
