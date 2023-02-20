@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\RegisterController;
 
 Route::get('/', function () {
     return view('home');
@@ -13,6 +14,8 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->name('user.store');
 Route::post('/', [LoginController::class, 'logout'])->name('logout');
 
 Route::resource('kelas', KelasController::class)->middleware('admin');
@@ -25,4 +28,3 @@ Route::get('/histori', [TransaksiController::class, 'index_histori'])->name('his
 
 Route::get('/profile', [UserController::class, 'edit'])->name('profile.edit');
 Route::post('/profile', [UserController::class, 'update'])->name('profile.update');
-
