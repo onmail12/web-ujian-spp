@@ -14,37 +14,23 @@ use Faker\Generator as Faker;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run(Faker $faker)
     {
         Kelas::factory(5)->create();
         Spp::factory(5)->create();
         Siswa::factory(5)->create();
         Petugas::factory(5)->create();
-        
-        User::create([
-            'name' => 'siswa',
-            'role' => 'siswa',
-            'email' => 'siswa@email.com',
-            'password' => bcrypt('1234'),
+
+        Petugas::create([
+            'nama_petugas' => 'admin'
         ]);
-        
-        User::create([
-            'name' => 'petugas',
-            'role' => 'petugas',
-            'email' => 'petugas@email.com',
-            'password' => bcrypt('1234'),
-        ]);
-        
+
         User::create([
             'name' => 'admin',
-            'role' => 'admin',
             'email' => 'admin@email.com',
             'password' => bcrypt('1234'),
+            'id_petugas' => Petugas::where('nama_petugas', 'admin')->first()->id_petugas,
+            'role' => 'admin',
         ]);
 
         foreach (Siswa::all() as $siswa) {

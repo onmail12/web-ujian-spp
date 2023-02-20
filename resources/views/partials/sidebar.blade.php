@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">SPP</div>
     </a>
 
     <!-- Divider -->
@@ -58,7 +58,7 @@
                 <h6 class="collapse-header">Admin</h6>
                 <a class="collapse-item" href="{{ route('siswa.index') }}">Data Siswa</a>
                 <a class="collapse-item" href="#">Data Petugas</a>
-                <a class="collapse-item" href="#">Data Kelas</a>
+                <a class="collapse-item" href="{{ route('kelas.index') }}">Data Kelas</a>
                 <a class="collapse-item" href="#">Data Spp</a>
             </div>
         </div>

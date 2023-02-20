@@ -20,17 +20,17 @@ class TransaksiController extends Controller
         return view('transaksi.histori', compact('pembayarans'));
     }
 
-    public function create(Siswa $siswa)
+    public function store(Request $request, Siswa $siswa)
     {
         Pembayaran::create([
             'id_petugas' => auth()->user()->id_petugas,
             'nisn' => $siswa->nisn,
             'tgl_bayar' => date("Y-m-d", time()),
             'id_spp' => $siswa->spp->id_spp,
-            'jumlah_bayar' => 500000, // no form
+            'jumlah_bayar' => $request->jumlah_bayar,
             'keterangan' => 'lunas',
         ]);
 
-        return redirect('/pembayaran');
+        return redirect()->route('histori');
     }
 }

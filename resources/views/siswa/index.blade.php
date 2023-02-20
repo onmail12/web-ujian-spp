@@ -94,17 +94,17 @@
     </div>
 </div>
 
-<table id="dataTable" class="table table-hover table-bordered text-nowrap mb-5">
+{{-- <table id="dataTable" class="table table-hover table-bordered text-nowrap mb-5">
     <thead class="table-light text-center">
-        <th>No</th>
-        <th>NISN</th>
-        <th>NIS</th>
-        <th>Nama</th>
-        {{-- <th>Alamat</th> --}}
-        <th>Kelas</th>
-        <th style="width:100px; text-align:center;" colspan=2>Aksi</th>
+        <tr>
+            <th>No</th>
+            <th>NISN</th>
+            <th>NIS</th>
+            <th>Nama</th>
+            <th>Kelas</th>
+            <th style="width:100px; text-align:center;" colspan=2>Aksi</th>
+        </tr>
     </thead>
-
     @foreach ($siswas as $siswa)
     <tbody>
         <tr>
@@ -112,13 +112,11 @@
             <td class="text-center">{{ $siswa->nisn }}</td>
             <td class="text-center">{{ $siswa->nis }}</td>
             <td>{{ $siswa->nama }}</td>
-            {{-- <td>{{ $siswa->alamat }}</td> --}}
             <td class="text-center">{{ $siswa->kelas->nama_kelas }}</td>
 
             <td class="text-center">
                 <form action="{{ route('siswa.edit', $siswa) }}" method="get">
-                    <button type="submit" class="btn btn-primary bi bi-pencil-square" data-bs-toggle="modal"
-                        data-bs-target="#updateModal">
+                    <button type="submit" class="btn btn-primary bi bi-pencil-square">
                 </form>
             </td>
 
@@ -126,7 +124,7 @@
                 <form action="{{ route('siswa.destroy', $siswa) }}" method="post">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger " >
+                    <button type="submit" class="btn btn-danger">
                         <i class="bi bi-trash"></i>
                     </button>
                 </form>
@@ -136,6 +134,44 @@
     </tbody>
 
     @endforeach
+</table> --}}
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>NISN</th>
+            <th>NIS</th>
+            <th>Nama</th>
+            <th>Kelas</th>
+            <th>Edit</th>
+            <th>Hapus</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($siswas as $siswa)
+        <tr>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $siswa->nisn }}</td>
+            <td>{{ $siswa->nis }}</td>
+            <td>{{ $siswa->nama }}</td>
+            <td>{{ $siswa->kelas->nama_kelas }}</td>
+            <td class="text-center">
+                <form action="{{ route('siswa.edit', $siswa) }}" method="get">
+                    <button type="submit" class="btn btn-primary bi bi-pencil-square">
+                </form>
+            </td>
+            <td class="text-center">
+                <form action="{{ route('siswa.destroy', $siswa) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
 </table>
 @endif
 @endsection

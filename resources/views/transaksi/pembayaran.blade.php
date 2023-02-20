@@ -37,12 +37,37 @@
             <td>{{ $siswa->spp->nominal }}</td>
 
             <td class="text-center">
-                <form action="{{ route('pembayaran.create', $siswa) }}" method="post">
-                    @csrf
-                    <button type="submit" class="btn btn-primary p-2">Bayar</button>
-                </form>
+                <button type="button" class="btn btn-primary p-2" data-bs-toggle="modal"
+                    data-bs-target="#addPembayaranModal">Bayar</button>
             </td>
 
+            <div class="modal fade" id="addPembayaranModal" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="addPembayaranModalLabel">Tambah Data Pembayaran</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('pembayaran.store', $siswa) }}" method="post">
+                                @csrf
+                                <div class="form-group my-2">
+                                    <label for="jumlah_bayar">Jumlah Bayar</label>
+                                    <input type="text" class="form-control" name="jumlah_bayar"
+                                        placeholder="Contoh: 900.000" required autofocus>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success"><i
+                                    class="bi bi-person-plus px-2"></i>Konfirmasi</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </tr>
     </tbody>
 

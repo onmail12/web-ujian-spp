@@ -7,8 +7,6 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.101.0">
-    <title>Signin Template · Bootstrap v4.6</title>
-
     <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/sign-in/">
 
 
@@ -35,11 +33,6 @@
         <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required
             autofocus>
         <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017-2022</p>
     </form>
