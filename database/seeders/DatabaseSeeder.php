@@ -32,6 +32,14 @@ class DatabaseSeeder extends Seeder
             'id_petugas' => Petugas::where('nama_petugas', 'admin')->first()->id_petugas,
             'role' => 'admin',
         ]);
+        
+        User::create([
+            'name' => 'admin_1',
+            'email' => 'admin1@email.com',
+            'password' => bcrypt('1234'),
+            'id_petugas' => Petugas::where('nama_petugas', 'admin')->first()->id_petugas,
+            'role' => 'admin',
+        ]);
 
         foreach (Siswa::all() as $siswa) {
             User::create([

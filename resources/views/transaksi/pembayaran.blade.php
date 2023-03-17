@@ -24,12 +24,10 @@
         <th style="width:100px; text-align:center;">Aksi</th>
 
     </thead>
-    @php $i = 0; @endphp
     @foreach ($siswas as $siswa)
-    @php $i++; @endphp
     <tbody class="">
         <tr>
-            <td>{{ $i }}</td>
+            <td>{{ $loop->iteration }}</td>
             <td>{{ $siswa->nisn }}</td>
             <td>{{ $siswa->nis }}</td>
             <td>{{ $siswa->nama }}</td>
